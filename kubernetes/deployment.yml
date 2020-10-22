@@ -1,27 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Return
+  name: return
   labels:
-    app: Return
+    app: return
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: Return
+      app: return
   template:
     metadata:
       labels:
-        app: Return
+        app: return
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
       containers:
-        - name: Return
-          image: username/Return:latest
+        - name: return
+          image: 496278789073.dkr.ecr.ap-northeast-1.amazonaws.com/skccuser15-return:v1
           ports:
             - containerPort: 8080
           readinessProbe:
             httpGet:
-              path: '/actuator/health'
+              path: '/returns'
               port: 8080
             initialDelaySeconds: 10
             timeoutSeconds: 2
@@ -29,7 +31,7 @@ spec:
             failureThreshold: 10
           livenessProbe:
             httpGet:
-              path: '/actuator/health'
+              path: '/returns'
               port: 8080
             initialDelaySeconds: 120
             timeoutSeconds: 2
