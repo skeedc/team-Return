@@ -31,8 +31,8 @@ spec:
             failureThreshold: 10
           livenessProbe:
             httpGet:
-              path: '/liveness'
-              port: 9090
+              path: '/returns'
+              port: 8080
             initialDelaySeconds: 120
             timeoutSeconds: 2
             periodSeconds: 5
