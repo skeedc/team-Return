@@ -21,6 +21,14 @@ spec:
           image: 496278789073.dkr.ecr.ap-northeast-1.amazonaws.com/skccuser15-return:v1
           ports:
             - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/returns'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
           livenessProbe:
             httpGet:
               path: '/returns'
