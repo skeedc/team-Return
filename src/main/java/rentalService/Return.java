@@ -38,7 +38,7 @@ public class Return {
         ReturnApplication.applicationContext.getBean(rentalService.external.CollectService.class)
             .collect(collect);
 
-  //
+  ////
     }
 
     @PreRemove
