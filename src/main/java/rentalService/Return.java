@@ -19,6 +19,12 @@ public class Return {
         BeanUtils.copyProperties(this, returned);
         returned.publishAfterCommit();
 
+        try {
+            Thread.currentThread().sleep((long) (800 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
@@ -32,7 +38,7 @@ public class Return {
         ReturnApplication.applicationContext.getBean(rentalService.external.CollectService.class)
             .collect(collect);
 
-
+  //
     }
 
     @PreRemove
